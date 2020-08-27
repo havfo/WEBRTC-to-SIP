@@ -1,7 +1,7 @@
 # WEBRTC to SIP client and server
 How to setup Kamailio + RTPEngine + TURN server to enable calling between WebRTC client and legacy SIP clients. This config is IPv6 enabled by default. This setup will bridge SRTP --> RTP and ICE --> nonICE to make a WebRTC client (sip.js) be able to call legacy SIP clients. The WebRTC client can be found [here](https://github.com/havfo/SipCaller).
 
-This setup is for Debian 9 Stretch.
+This setup is for Debian 10 Buster.
 
 This setup is configured to run with the following services:
 
@@ -39,8 +39,8 @@ This will do the SRTP-RTP bridging needed to make WebRTC clients talk to legacy 
 
 The easiest way of installing is to get it from Sipwise repository:
 ```bash
-echo 'deb http://deb.sipwise.com/spce/mr7.1.1/ stretch main' > /etc/apt/sources.list.d/sipwise.list
-echo 'deb-src http://deb.sipwise.com/spce/mr7.1.1/ stretch main' >> /etc/apt/sources.list.d/sipwise.list
+echo 'deb http://deb.sipwise.com/spce/mr8.5.1/ buster main' > /etc/apt/sources.list.d/sipwise.list
+echo 'deb-src http://deb.sipwise.com/spce/mr8.5.1/ buster main' >> /etc/apt/sources.list.d/sipwise.list
 apt-get update
 apt-get install -y --allow-unauthenticated ngcp-keyring
 apt-get update
@@ -86,7 +86,7 @@ This will install the client that can be found [here](https://github.com/havfo/S
 
 To be able to support running HTTP(S) and TURN on the same port (443), we need a newer version of nginx that supports streams the way we need. Get it from official repo:
 ```sh
-echo 'deb http://nginx.org/packages/mainline/debian/ stretch nginx' > /etc/apt/sources.list.d/nginx.list
+echo 'deb http://nginx.org/packages/mainline/debian/ buster nginx' > /etc/apt/sources.list.d/nginx.list
 curl -fsSL https://nginx.org/keys/nginx_signing.key | apt-key add -
 apt-get update
 apt-get install nginx
