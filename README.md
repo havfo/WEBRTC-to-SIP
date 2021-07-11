@@ -39,8 +39,8 @@ This will do the SRTP-RTP bridging needed to make WebRTC clients talk to legacy 
 
 The easiest way of installing is to get it from Sipwise repository:
 ```bash
-echo 'deb https://deb.sipwise.com/spce/mr8.5.1/ buster main' > /etc/apt/sources.list.d/sipwise.list
-echo 'deb-src https://deb.sipwise.com/spce/mr8.5.1/ buster main' >> /etc/apt/sources.list.d/sipwise.list
+echo 'deb https://deb.sipwise.com/spce/mr9.4.1/ buster main' > /etc/apt/sources.list.d/sipwise.list
+echo 'deb-src https://deb.sipwise.com/spce/mr9.4.1/ buster main' >> /etc/apt/sources.list.d/sipwise.list
 wget -q -O - https://deb.sipwise.com/spce/sipwise.gpg | apt-key add -
 apt-get update
 apt-get install -y ngcp-keyring ngcp-rtpengine
