@@ -1,7 +1,7 @@
 # WEBRTC to SIP client and server
 How to setup Kamailio + RTPEngine + TURN server to enable calling between WebRTC client and legacy SIP clients. This config is IPv6 enabled by default. This setup will bridge SRTP --> RTP and ICE --> nonICE to make a WebRTC client (sip.js) be able to call legacy SIP clients. The WebRTC client can be found [here](https://github.com/havfo/SipCaller).
 
-This setup is for Debian 10 Buster.
+This setup is for Debian 12 Bookworm.
 
 This setup is configured to run with the following services:
 
@@ -25,7 +25,6 @@ You will then find the certificates under:
 ```
 
 ## Get configuration files
-All files needed to setup all components on Debian 9 Stretch.
 ```bash
 git clone https://github.com/havfo/WEBRTC-to-SIP.git
 cd WEBRTC-to-SIP
@@ -39,8 +38,8 @@ This will do the SRTP-RTP bridging needed to make WebRTC clients talk to legacy 
 
 The easiest way of installing is to get it from Sipwise repository:
 ```bash
-echo 'deb https://deb.sipwise.com/spce/mr9.4.1/ buster main' > /etc/apt/sources.list.d/sipwise.list
-echo 'deb-src https://deb.sipwise.com/spce/mr9.4.1/ buster main' >> /etc/apt/sources.list.d/sipwise.list
+echo 'deb https://deb.sipwise.com/spce/mr11.5.1/ bookworm main' > /etc/apt/sources.list.d/sipwise.list
+echo 'deb-src https://deb.sipwise.com/spce/mr11.5.1/ bookworm main' >> /etc/apt/sources.list.d/sipwise.list
 wget -q -O - https://deb.sipwise.com/spce/keyring/sipwise-keyring-bootstrap.gpg | apt-key add -
 apt-get update
 apt-get install -y ngcp-keyring ngcp-rtpengine
@@ -83,12 +82,10 @@ service kamailio restart
 ## Install WebRTC client
 This will install the client that can be found [here](https://github.com/havfo/SipCaller).
 
-To be able to support running HTTP(S) and TURN on the same port (443), we need a newer version of nginx that supports streams the way we need. Get it from official repo:
+Install Nginx:
 ```sh
-echo 'deb http://nginx.org/packages/mainline/debian/ buster nginx' > /etc/apt/sources.list.d/nginx.list
-curl -fsSL https://nginx.org/keys/nginx_signing.key | apt-key add -
 apt-get update
-apt-get install nginx
+apt-get install nginx libnginx-mod-stream
 cd WEBRTC-to-SIP
 cp etc/nginx/nginx.conf /etc/nginx/
 cp etc/nginx/conf.d/default.conf /etc/nginx/conf.d/
